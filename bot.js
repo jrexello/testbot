@@ -38,7 +38,7 @@ client.on('message', message => {
 					// If Wolfram doesn't have an answer
 					bot.reply(message, "I don't seem to have an answer to that question");
 				}
-});
+);
 });
 
 client.login(process.env.TOKEN_BOT);
