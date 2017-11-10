@@ -10,3 +10,5 @@ client.on('message', message => {
     message.reply('Me gustan grandes');
   }
 });
+
+client.login(process.env.BOT_TOKEN);
