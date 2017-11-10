@@ -39,5 +39,6 @@ client.on('message', message => {
 					bot.reply(message, "I don't seem to have an answer to that question");
 				}
 });
+});
 
 client.login(process.env.TOKEN_BOT);
