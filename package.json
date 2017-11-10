@@ -1,4 +1,4 @@
-"name": "Test",
+'name': 'Test',
 "description": "Testcription",
 "version": "0.0.0",
 "main": "bot.js",
