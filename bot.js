@@ -4,6 +4,21 @@ const Discord = require("discord.js");
 //Este será el bot en sí.
 const client = new Discord.Client();
 
+//El objeto raid
+function Plan(maxMembers, autor){
+  this.maxMembers = maxMembers;
+  this.autor = autor;
+  this.lista = [autor];
+}
+
+//Métodos
+
+Plan.prototype.dameLista = function(){
+  for(var i = 0; i < this.lista.length; i++){
+    message.channel.send("<@" + this.lista[i].tag + ">");
+  }
+}
+
 var mensaje = "";
 
 client.on("ready", () => {
@@ -24,10 +39,9 @@ client.on("message", message => {
     else if(mensaje === "buscoraid"){
       var arrRaid = [message.author];
       message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
+      var raid = new Plan(6, message.author);
       message.channel.send("Apuntados hasta ahora: ");
-      for(var i = 0; i < arrRaid.length; i++){
-        message.channel.send(arrRaid[i].tag);
-      }
+      raid.dameLista();
     }
 
   }
