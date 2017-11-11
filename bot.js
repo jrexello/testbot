@@ -61,7 +61,7 @@ client.on("message", message => {
 
 //Confirma si ya existe esa raid.
 function existeRaid(num){
-  for(var i = 0; i < arrPlanes.length(); i++){
+  for(var i = 0; i < arrPlanes.length; i++){
     if((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === 6)) return true;
   }
   return false;
