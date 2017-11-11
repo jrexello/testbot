@@ -5,17 +5,17 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 //El objeto raid
-function Plan(maxMembers, autor){
+function Plan(maxMembers, message){
   this.maxMembers = maxMembers;
-  this.autor = autor;
-  this.lista = [autor];
+  this.autor = message.autor;
+  this.lista = [message.autor];
 }
 
 //Métodos
 
 Plan.prototype.dameLista = function(){
   for(var i = 0; i < this.lista.length; i++){
-    message.channel.send("<@" + this.lista[i].tag + ">");
+    this.message.channel.send("<@" + this.lista[i].tag + ">");
   }
 }
 
@@ -39,7 +39,7 @@ client.on("message", message => {
     else if(mensaje === "buscoraid"){
       var arrRaid = [message.author];
       message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
-      var raid = new Plan(6, message.author);
+      var raid = new Plan(6, message);
       message.channel.send("Apuntados hasta ahora: ");
       raid.dameLista();
     }
