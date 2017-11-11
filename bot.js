@@ -8,8 +8,8 @@ const client = new Discord.Client();
 function Plan(maxMembers, message){
   this.maxMembers = maxMembers;
   this.message = message;
-  this.autor = message.autor;
-  this.lista = [message.autor];
+  this.autor = message.author;
+  this.lista = [message.author];
 }
 
 //Métodos
