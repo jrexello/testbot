@@ -9,7 +9,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-  if (message.content === 'culo') {
+  if (message.content.startsWith("!")) {
     message.reply('Me gustan grandes');
   }
 });
