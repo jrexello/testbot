@@ -4,6 +4,10 @@ const Discord = require("discord.js");
 //Este será el bot en sí.
 const client = new Discord.Client();
 
+//El array donde se guardarán las planificaciones
+
+var arrPlanes = [];
+
 //El objeto raid
 function Plan(id, maxMembers, message){
   this.id = id;
@@ -38,16 +42,26 @@ client.on("message", message => {
       message.channel.send("Me gustan grandes");
     }
 
-    else if(mensaje.match(/buscoraid \d/)){
+    else if(mensaje.match(/crearraid \d/)){
+      var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
       message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
-      var raid = new Plan(0, 6, message);
+      var raid = new Plan(numero, 6, message);
+      arrPlanes.push(raid);
       message.channel.send("Apuntados hasta ahora: ");
       raid.dameLista();
     }
 
   }
 });
+
+//Confirma si ya existe esa raid.
+function existeRaid(num){
+  for(var i = 0; i < arrPlanes.length(); i++){
+    if(arrPlanes[i].id === num) return true;
+  }
+  return false;
+}
 
 client.login(process.env.TOKEN_BOT);
 
