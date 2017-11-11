@@ -7,6 +7,7 @@ const client = new Discord.Client();
 //El objeto raid
 function Plan(maxMembers, message){
   this.maxMembers = maxMembers;
+  this.message = message;
   this.autor = message.autor;
   this.lista = [message.autor];
 }
