@@ -38,7 +38,7 @@ client.on("message", message => {
       message.channel.send("Me gustan grandes");
     }
 
-    else if(mensaje.match("buscoraid \d")){
+    else if(mensaje.match(/buscoraid \d/)){
       var arrRaid = [message.author];
       message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
       var raid = new Plan(0, 6, message);
