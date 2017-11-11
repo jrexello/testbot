@@ -61,6 +61,7 @@ client.on("message", message => {
       var arrRaid = [message.author];
       if(existeRaid(numero, 6)){
         borraPlan(numero, 6);
+        message.channel.send("Raid borrada");
       }
       else {
         message.channel.send("No existe esa raid, no puedo borrarla");
