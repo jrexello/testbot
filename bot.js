@@ -59,7 +59,7 @@ client.on("message", message => {
     else if(mensaje.match(/borraraid \d/)){
       var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
-      if(existeRaid(numero, 6)){
+      if(existePlan(numero, 6)){
         borraPlan(numero, 6);
         message.channel.send("Raid borrada");
       }
