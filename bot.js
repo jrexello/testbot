@@ -1,16 +1,26 @@
 //Cargamos la librería de Discord.js
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
 //Este será el bot en sí.
 const client = new Discord.Client();
 
-client.on('ready', () => {
-  console.log('I am ready!');
+var mensaje = "";
+
+client.on("ready", () => {
+  console.log("I am ready!");
 });
 
-client.on('message', message => {
+//El bot recibe un mensaje
+client.on("message", message => {
+  //Solo hacemos caso a los que empiecen con !
   if (message.content.startsWith("!")) {
-    message.reply('Me gustan grandes');
+    mensaje = message.content.substring(1);
+
+    if(mensaje === "culo"){
+
+      message.log("Me gustan grandes");
+    }
+
   }
 });
 
