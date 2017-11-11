@@ -26,7 +26,7 @@ client.on("message", message => {
       message.channel.send("El usuario " + message.author.tag + " va a iniciar una raid");
       message.channel.send("Apuntados hasta ahora: ");
       for(var i = 0; i < arrRaid.length; i++){
-        message.channel.send(arrRaid[i]);
+        message.channel.send(arrRaid[i].tag);
       }
     }
 
