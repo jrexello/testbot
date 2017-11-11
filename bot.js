@@ -46,6 +46,10 @@ client.on("message", message => {
       var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
       message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
+      if(existeRaid(numero)){
+        message.channel.send("Ya existe una raid con ese número, usa otro.");
+        return;
+      }
       var raid = new Plan(numero, 6, message);
       arrPlanes.push(raid);
       message.channel.send("Apuntados hasta ahora: ");
@@ -58,7 +62,7 @@ client.on("message", message => {
 //Confirma si ya existe esa raid.
 function existeRaid(num){
   for(var i = 0; i < arrPlanes.length(); i++){
-    if(arrPlanes[i].id === num) return true;
+    if((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === 6)) return true;
   }
   return false;
 }
