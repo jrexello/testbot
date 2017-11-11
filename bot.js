@@ -5,7 +5,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 //El objeto raid
-function Plan(maxMembers, message){
+function Plan(id, maxMembers, message){
+  this.id = id;
   this.maxMembers = maxMembers;
   this.message = message;
   this.autor = message.author;
@@ -16,7 +17,7 @@ function Plan(maxMembers, message){
 
 Plan.prototype.dameLista = function(){
   for(var i = 0; i < this.lista.length; i++){
-    this.message.channel.send("<@" + this.lista[i].tag + ">");
+    this.message.channel.send("<@" + this.lista[i].id + ">");
   }
 }
 
@@ -37,10 +38,10 @@ client.on("message", message => {
       message.channel.send("Me gustan grandes");
     }
 
-    else if(mensaje === "buscoraid"){
+    else if(mensaje === "buscoraid \d"){
       var arrRaid = [message.author];
       message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
-      var raid = new Plan(6, message);
+      var raid = new Plan(0, 6, message);
       message.channel.send("Apuntados hasta ahora: ");
       raid.dameLista();
     }
