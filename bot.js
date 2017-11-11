@@ -18,7 +18,7 @@ client.on("message", message => {
 
     if(mensaje === "culo"){
 
-      message.log("Me gustan grandes");
+      console.log("Me gustan grandes");
     }
 
   }
