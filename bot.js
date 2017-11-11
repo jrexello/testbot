@@ -1,4 +1,7 @@
+//Cargamos la librería de Discord.js
 const Discord = require('discord.js');
+
+//Este será el bot en sí.
 const client = new Discord.Client();
 
 client.on('ready', () => {
@@ -12,3 +15,4 @@ client.on('message', message => {
 });
 
 client.login(process.env.TOKEN_BOT);
+
