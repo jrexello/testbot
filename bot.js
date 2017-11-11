@@ -21,6 +21,11 @@ client.on("message", message => {
       message.channel.send("Me gustan grandes");
     }
 
+    else if(mensaje === "buscoraid"){
+      var arrRaid = [message.author];
+      message.channel.send("El usuario " + message.author.username + " va a iniciar una raid");
+    }
+
   }
 });
 
