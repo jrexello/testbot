@@ -18,7 +18,7 @@ client.on("message", message => {
 
     if(mensaje === "culo"){
 
-      console.log("Me gustan grandes");
+      message.channel.send("Me gustan grandes");
     }
 
   }
