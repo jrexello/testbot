@@ -19,9 +19,9 @@ function Plan(id, maxMembers, message){
 
 //Métodos
 
-Plan.prototype.dameLista = function(){
+Plan.prototype.dameLista = function(canal){
   for(var i = 0; i < this.lista.length; i++){
-    this.message.channel.send("<@" + this.lista[i].id + ">");
+    canal.send("<@" + this.lista[i].id + ">");
   }
 }
 
@@ -72,14 +72,15 @@ client.on("message", message => {
       if(arrPlanes.length === 0){
         message.channel.send("Aún no se ha creado ningún evento ¡Crealo tú!");
       } else {
-        message.channel.send("Listando las raids para tí");
+        message.channel.send("Listando las raids para tí");        
         for(var i = 0; i < arrPlanes.length; i++){
+          message.channel.send(" ");
           message.channel.send("Tipo de plan: **" + tipoPlan(arrPlanes[i].maxMembers) + "**");
           message.channel.send("Plazas: " +arrPlanes[i].lista.length + "/" + arrPlanes[i].maxMembers);
           message.channel.send("ID de plan: "+ arrPlanes[i].id);
           message.channel.send("Autor: <@"+ arrPlanes[i].autor.id +">");
           message.channel.send("Lista de miembros apuntados:");
-         arrPlanes[i].dameLista();
+         arrPlanes[i].dameLista(message.channel);
         }
       }
 
