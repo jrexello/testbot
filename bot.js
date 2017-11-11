@@ -23,7 +23,7 @@ client.on("message", message => {
 
     else if(mensaje === "buscoraid"){
       var arrRaid = [message.author];
-      message.channel.send("El usuario @" + message.author.id + " va a iniciar una raid");
+      message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
       message.channel.send("Apuntados hasta ahora: ");
       for(var i = 0; i < arrRaid.length; i++){
         message.channel.send(arrRaid[i].tag);
