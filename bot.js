@@ -45,7 +45,7 @@ client.on("message", message => {
     else if(mensaje.match(/crearaid \d/)){
       var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
-      if(existeRaid(numero, 6)){
+      if(existePlan(numero, 6)){
         message.channel.send("Ya existe una raid con ese número, usa otro.");
         return;
       }
