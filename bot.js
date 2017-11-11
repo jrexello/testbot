@@ -42,29 +42,49 @@ client.on("message", message => {
       message.channel.send("Me gustan grandes");
     }
 
-    else if(mensaje.match(/crearraid \d/)){
+    else if(mensaje.match(/crearaid \d/)){
       var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
-      message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");
-      if(existeRaid(numero)){
+      if(existeRaid(numero, 6)){
         message.channel.send("Ya existe una raid con ese número, usa otro.");
         return;
       }
+      message.channel.send("El usuario <@" + message.author.id + "> va a iniciar una raid");     
       var raid = new Plan(numero, 6, message);
       arrPlanes.push(raid);
       message.channel.send("Apuntados hasta ahora: ");
       raid.dameLista();
     }
 
+    else if(mensaje.match(/borraraid \d/)){
+      var numero = Number(mensaje.substring(mensaje.length-2));
+      var arrRaid = [message.author];
+      if(existeRaid(numero, 6)){
+        borraPlan(numero, 6);
+      }
+      else {
+        message.channel.send("No existe esa raid, no puedo borrarla");
+      }
+    }
+
   }
 });
 
 //Confirma si ya existe esa raid.
-function existeRaid(num){
+function existePlan(num, tipo){
   for(var i = 0; i < arrPlanes.length; i++){
-    if((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === 6)) return true;
+    if((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === tipo)) return true;
   }
   return false;
+}
+
+//Elimina una raid
+function borraPlan(num, tipo){
+  for(var i = 0; i < arrPlanes.length; i++){
+    if((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === tipo)){
+      arrPlanes.splice(i,1);
+    }
+  }
 }
 
 client.login(process.env.TOKEN_BOT);
