@@ -42,7 +42,7 @@ client.on("message", message => {
       message.channel.send("Me gustan grandes");
     }
 
-    else if(mensaje.match(/crearaid \d/)){
+    else if(mensaje.match(/creaRaid \d/i)){
       var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
       if(existePlan(numero, 6)){
@@ -56,7 +56,7 @@ client.on("message", message => {
       raid.dameLista();
     }
 
-    else if(mensaje.match(/borraraid \d/)){
+    else if(mensaje.match(/borraRaid \d/i)){
       var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
       if(existePlan(numero, 6)){
@@ -68,7 +68,22 @@ client.on("message", message => {
       }
     }
 
+    else if(mensaje.match(/listaRaids/i)){
+      if(arrPlanes.length === 0){
+        message.channel.send("Aún no se ha creado ningún evento ¡Crealo tú!");
+      } else {
+        message.channel.send("Listando las raids para tí");
+        for(var i = 0; i < arrPlanes.length; i++){
+          message.channel.send("Tipo de plan: ***" + tipoPlan(arrPlanes[i].maxMembers) + "**");
+          message.channel.send("ID de plan: "+ arrPlanes[i].id);
+          message.channel.send("Autor: @<"+ arrPlanes[i].author.id +">");
+          message.channel.send("Lista de miembros apuntados:");
+         arrPlanes[i].dameLista();
+        }
+      }
+
   }
+}
 });
 
 //Confirma si ya existe esa raid.
@@ -85,6 +100,21 @@ function borraPlan(num, tipo){
     if((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === tipo)){
       arrPlanes.splice(i,1);
     }
+  }
+}
+
+//Traduce el tipo de plan según los miembros
+function tipoPlan(num){
+  switch(num){
+    case 3:
+      return "Ocaso";
+      break;
+    case 4:
+      return "PvP";
+      break;
+    case 6:
+      return "Raid";
+      break;
   }
 }
 
