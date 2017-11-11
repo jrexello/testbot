@@ -53,7 +53,7 @@ client.on("message", message => {
       var raid = new Plan(numero, 6, message);
       arrPlanes.push(raid);
       message.channel.send("Apuntados hasta ahora: ");
-      raid.dameLista();
+      raid.dameLista(message.channel);
     }
 
     else if(mensaje.match(/borraRaid \d/i)){
