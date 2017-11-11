@@ -74,7 +74,7 @@ client.on("message", message => {
       } else {
         message.channel.send("Listando las raids para tí");        
         for(var i = 0; i < arrPlanes.length; i++){
-          message.channel.send(" ");
+          message.channel.send("----------------");
           message.channel.send("Tipo de plan: **" + tipoPlan(arrPlanes[i].maxMembers) + "**");
           message.channel.send("Plazas: " +arrPlanes[i].lista.length + "/" + arrPlanes[i].maxMembers);
           message.channel.send("ID de plan: "+ arrPlanes[i].id);
