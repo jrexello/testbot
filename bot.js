@@ -18,6 +18,7 @@ function Plan (id, maxMembers, message) {
   this.autor = message.author
   this.lista = [message.author]
   this.hora = new Date()
+  this.hora.setHours(this.hora.getHours() + 1)
 }
 
 // Métodos
