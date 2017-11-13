@@ -63,7 +63,13 @@ client.on('message', message => {
     } else if (mensaje.match(/joinraid \d/i)) {
       numero = Number(mensaje.substring(mensaje.length - 2))
       if (existePlan(numero, 6)) {
-        damePlan(numero, 6).lista.push(message.author)
+        var auxPlan = damePlan(numero, 6)
+        if (!repetido) {
+          auxPlan.lista.push(message.author)
+          message.channel.send('<@' + message.author.id + '> se ha unido a la raid ' + numero.toString())
+          message.channel.send('Lista de miembros apuntados:')
+          auxPlan.dameLista(message.channel)
+        }
       }
     } else if (mensaje.match(/borraRaid \d/i)) {
       numero = Number(mensaje.substring(mensaje.length - 2))
@@ -91,6 +97,16 @@ client.on('message', message => {
     }
   }
 })
+
+// Comprueba si el jugador existe en el plan
+function repetido (plan, jugador) {
+  for (var i = 0; i < plan.lista.length; i++) {
+    if (jugador.id === plan.lista[i].id) {
+      return true
+    }
+  }
+  return false
+}
 
 // Confirma si ya existe esa raid.
 function existePlan (num, tipo) {
