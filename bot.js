@@ -17,7 +17,7 @@ function Plan (id, maxMembers, message) {
   this.message = message
   this.autor = message.author
   this.lista = [message.author]
-  this.hora = message.createdTimestamp
+  this.hora = new Date()
 }
 
 // Métodos
@@ -94,7 +94,7 @@ client.on('message', message => {
           message.channel.send('Tipo de plan: **' + tipoPlan(arrPlanes[i].maxMembers) + '**')
           message.channel.send('Plazas: ' + arrPlanes[i].lista.length + '/' + arrPlanes[i].maxMembers)
           message.channel.send('ID de plan: ' + arrPlanes[i].id)
-          message.channel.send('Creado: ' + arrPlanes[i].hora)
+          message.channel.send('Creado: ' + arrPlanes[i].hora.getHours() + ':' + arrPlanes[i].hora.getMinutes())
           // message.channel.send('Autor: <@' + arrPlanes[i].autor.id + '>')
           message.channel.send('Lista de miembros apuntados:')
           arrPlanes[i].dameLista(message.channel)
