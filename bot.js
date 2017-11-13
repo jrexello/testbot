@@ -29,6 +29,14 @@ var mensaje = "";
 
 client.on("ready", () => {
   console.log("I am ready!");
+  client.user.setPresence({
+		status: "online",
+		game: {
+			name: "Carreras de Chocobos",
+			streaming: false,
+			type: 1,
+		}
+	})
 });
 
 //El bot recibe un mensaje
