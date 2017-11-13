@@ -69,6 +69,8 @@ client.on('message', message => {
           message.channel.send('<@' + message.author.id + '> se ha unido a la raid ' + numero.toString())
           message.channel.send('Lista de miembros apuntados:')
           auxPlan.dameLista(message.channel)
+        } else {
+          message.reply('Ya estás apuntado, pesao.')
         }
       }
     } else if (mensaje.match(/borraRaid \d/i)) {
