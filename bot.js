@@ -64,7 +64,7 @@ client.on('message', message => {
       numero = Number(mensaje.substring(mensaje.length - 2))
       if (existePlan(numero, 6)) {
         var auxPlan = damePlan(numero, 6)
-        if (!repetido) {
+        if (!repetido(auxPlan, message.author)) {
           auxPlan.lista.push(message.author)
           message.channel.send('<@' + message.author.id + '> se ha unido a la raid ' + numero.toString())
           message.channel.send('Lista de miembros apuntados:')
