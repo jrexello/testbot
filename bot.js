@@ -65,6 +65,16 @@ client.on("message", message => {
 
     }
 
+    else if(mesnaje === "stop"){
+      const voiceChannel = message.member.voiceChannel;
+			if (!voiceChannel) {
+				message.reply("ni siquiera estoy y ya me quieres echar :(");
+			} else {
+				message.reply("adiós...");
+				voiceChannel.leave();
+			}
+    }
+
     else if(mensaje.match(/creaRaid \d/i)){
       var numero = Number(mensaje.substring(mensaje.length-2));
       var arrRaid = [message.author];
