@@ -60,6 +60,11 @@ client.on('message', message => {
       arrPlanes.push(raid)
       message.channel.send('Apuntados hasta ahora: ')
       raid.dameLista(message.channel)
+    } else if (mensaje.match(/joinraid \d/i)) {
+      numero = Number(mensaje.substring(mensaje.length - 2))
+      if (existePlan(numero, 6)) {
+        damePlan(numero, 6).lista.push(message.author)
+      }
     } else if (mensaje.match(/borraRaid \d/i)) {
       numero = Number(mensaje.substring(mensaje.length - 2))
       if (existePlan(numero, 6)) {
@@ -100,6 +105,14 @@ function borraPlan (num, tipo) {
   for (var i = 0; i < arrPlanes.length; i++) {
     if ((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === tipo)) {
       arrPlanes.splice(i, 1)
+    }
+  }
+}
+
+function damePlan (num, tipo) {
+  for (var i = 0; i < arrPlanes.length; i++) {
+    if ((arrPlanes[i].id === num) && (arrPlanes[i].maxMembers === tipo)) {
+      return arrPlanes[i]
     }
   }
 }
