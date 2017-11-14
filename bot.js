@@ -113,6 +113,10 @@ client.on('message', message => {
         if (repetido(auxPlan2, message.author)) {
           sacar(auxPlan2, message.author)
           message.channel.send('Jugador <@' + message.author.id + '> sacado del plan.')
+          if (auxPlan2.lista.length === 0) {
+            borraPlan(auxPlan2.id, 6)
+            message.channel.send('El plan se ha quedado si miembros, borrando...')
+          }
         } else {
           message.reply('No puedo sacarte de un plan en el que no estás.')
         }
