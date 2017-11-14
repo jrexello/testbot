@@ -26,7 +26,10 @@ function Plan (id, maxMembers, message) {
 Plan.prototype.dameLista = function (canal) {
   var strOut = ''
   for (var i = 0; i < this.lista.length; i++) {
-    strOut = strOut.concat('<@' + this.lista[i].id + '>, ')
+    strOut = strOut.concat('<@' + this.lista[i].id + '>')
+    if (i + 1 < this.lista.length) {
+      strOut = strOut.concat(', ')
+    }
     canal.send(strOut)
   }
 }
@@ -76,6 +79,8 @@ client.on('message', message => {
         } else {
           message.reply('Ya estás apuntado, pesao.')
         }
+      } else {
+        message.channel.send('No existe ese plan :|. Comprueba los planes con "!listaraids"')
       }
     } else if (mensaje.match(/borraRaid \d/i)) {
       numero = Number(mensaje.substring(mensaje.length - 2))
@@ -101,9 +106,31 @@ client.on('message', message => {
           arrPlanes[i].dameLista(message.channel)
         }
       }
+    } else if (mensaje.match(/salirraid \d/i)) {
+      numero = Number(mensaje.substring(mensaje.length - 2))
+      if (existePlan(numero, 6)) {
+        var auxPlan2 = damePlan(numero, 6)
+        if (repetido(auxPlan2, message.author)) {
+          sacar(auxPlan2, message.author)
+          message.channel.send('Jugador <@' + message.author.id + '> sacado del plan.')
+        } else {
+          message.reply('No puedo sacarte de un plan en el que no estás.')
+        }
+      } else {
+        message.reply('No existe ese plan')
+      }
     }
   }
 })
+
+// Saca un jugador de un plan
+function sacar (plan, jugador) {
+  for (var i = 0; i < plan.lista.length; i++) {
+    if (jugador.id === plan.lista[i].id) {
+      plan.lista.splice(i, 1)
+    }
+  }
+}
 
 // Comprueba si el jugador existe en el plan
 function repetido (plan, jugador) {
