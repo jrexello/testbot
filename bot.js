@@ -34,6 +34,15 @@ Plan.prototype.dameLista = function (canal) {
   }
 }
 
+Plan.prototype.dameHora = function () {
+  var strOut = this.hora.getHours() + ':'
+  if (this.hora.getMinutes < 10) {
+    strOut = strOut.concat('0')
+  }
+  strOut = strOut.concat(this.hora.getMinutes())
+  return strOut
+}
+
 var mensaje = ''
 
 client.on('ready', () => {
@@ -100,7 +109,7 @@ client.on('message', message => {
           message.channel.send('Tipo de plan: **' + tipoPlan(arrPlanes[i].maxMembers) + '**')
           message.channel.send('Plazas: ' + arrPlanes[i].lista.length + '/' + arrPlanes[i].maxMembers)
           message.channel.send('ID de plan: ' + arrPlanes[i].id)
-          message.channel.send('Creado: ' + arrPlanes[i].hora.getHours() + ':' + arrPlanes[i].hora.getMinutes())
+          message.channel.send('Creado: ' + arrPlanes[i].dameHora())
           // message.channel.send('Autor: <@' + arrPlanes[i].autor.id + '>')
           message.channel.send('Lista de miembros apuntados:')
           arrPlanes[i].dameLista(message.channel)
